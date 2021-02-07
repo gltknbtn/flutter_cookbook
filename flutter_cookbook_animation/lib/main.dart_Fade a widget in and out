@@ -1,0 +1,52 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+main() {
+  runApp(MyHomePage(title:'Fade in or out'));
+}
+
+class MyHomePage extends StatefulWidget {
+  final String title;
+
+  const MyHomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    _MyHomePageState _myHomePageState = new _MyHomePageState();
+    return _myHomePageState;
+  }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool _visible = true;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: AnimatedOpacity(
+            opacity: _visible ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 500),
+            child: Container(
+              height: 200.0,
+              width: 200.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _visible = !_visible;
+            });
+          },
+          tooltip: 'Toggle Opacity',
+          child: Icon(Icons.flip),
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SnackBarDemo());
+}
+
+class SnackBarDemo extends StatelessWidget {
+  final String title = 'SnackBar Demo';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: title,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: SnackBarPage(),
+      ),
+    );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          final snackbar = SnackBar(
+            content: Text('YAY! a Snack Bar Appeared'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change
+              },
+            ),
+          );
+          Scaffold.of(context).showSnackBar(snackbar);
+        },
+        child: Text('SHOW SNACKBAR'),
+      ),
+    );
+  }
+}
